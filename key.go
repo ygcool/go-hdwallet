@@ -3,12 +3,15 @@ package hdwallet
 import (
 	"crypto/ecdsa"
 	"encoding/hex"
-
+	"fmt"
+	"github.com/binance-chain/go-sdk/common/bech32"
+	"github.com/binance-chain/go-sdk/common/types"
 	"github.com/btcsuite/btcd/btcec"
 	"github.com/btcsuite/btcd/txscript"
 	"github.com/btcsuite/btcutil"
 	"github.com/btcsuite/btcutil/hdkeychain"
 	"github.com/cpacia/bchutil"
+	"github.com/tendermint/tendermint/crypto/secp256k1"
 )
 
 // Key struct
@@ -93,7 +96,7 @@ func (k *Key) GetChildKey(opts ...Option) (*Key, error) {
 
 	extended := k.Extended
 	for _, i := range no.GetPath() {
-		extended, err = extended.Child(i)
+		extended, err = extended.Derive(i)
 		if err != nil {
 			return nil, err
 		}
@@ -227,4 +230,33 @@ func (k *Key) AddressP2WPKHInP2SH() (string, error) {
 	}
 
 	return addr1.EncodeAddress(), nil
+}
+
+// AddressBNB 生成bnb地址
+// hrp bnb主网地址 tbnb测试地址
+func (k *Key) AddressBNB(hrp string) (string, error) {
+	if hrp == "" {
+		hrp = "bnb"
+	}
+
+	priBytes, err := hex.DecodeString(k.PrivateHex())
+	if err != nil {
+		return "", err
+	}
+
+	if len(priBytes) != 32 {
+		return "", fmt.Errorf("Len of Keybytes is not equal to 32 ")
+	}
+
+	var keyBytesArray [32]byte
+	copy(keyBytesArray[:], priBytes[:32])
+	priKey := secp256k1.PrivKeySecp256k1(keyBytesArray)
+	addr := types.AccAddress(priKey.PubKey().Address())
+
+	bech32Addr, err := bech32.ConvertAndEncode(hrp, addr.Bytes())
+	if err != nil {
+		return "", err
+	}
+
+	return bech32Addr, nil
 }

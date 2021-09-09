@@ -5,4 +5,7 @@ const (
 	BTC  = "BTC"
 	ETH  = "ETH"
 	ETC  = "ETC"
+	TRX  = "TRX"
+	BNB  = "BNB"
+	FIL  = "FIL"
 )
