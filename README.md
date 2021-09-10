@@ -1,8 +1,6 @@
 ## go-hdwallet
 
-Golang实现的多币种钱包
-
-鸣谢：[https://github.com/foxnut/go-hdwallet](https://github.com/foxnut/go-hdwallet)
+Golang实现的多币种HD钱包
 
 ## 支持的币种
 
@@ -96,3 +94,6 @@ func main() {
     fmt.Println("ETC: ", address)
 }
 ```
+
+
+鸣谢：[https://github.com/foxnut/go-hdwallet](https://github.com/foxnut/go-hdwallet)
