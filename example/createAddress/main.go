@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+
 	"github.com/ygcool/go-hdwallet"
 )
 
@@ -21,12 +22,19 @@ func main() {
 	fmt.Println("助记词：", mnemonic)
 	fmt.Println()
 
-	wallet, _ := master.GetWallet(hdwallet.CoinType(hdwallet.BNB))
-	fmt.Println("BNB私钥：", wallet.GetKey().PrivateHex())
-	address, _ := wallet.GetKey().AddressBNB("bnb")
-	fmt.Println("BNB: ", address)
-	addressTestnet, _ := wallet.GetKey().AddressBNB("tbnb")
-	fmt.Println("BNBTestnet: ", addressTestnet)
+	wallet, _ := master.GetWallet(hdwallet.CoinType(hdwallet.FIL))
+	fmt.Println("FIL私钥：", wallet.GetKey().PrivateHex())
+	address, _ := wallet.GetAddress()
+	fmt.Println("FIL: ", address)
+	addressTestnet, _ := wallet.GetKey().AddressFIL(hdwallet.TESTNET)
+	fmt.Println("FIL-testnet: ", addressTestnet)
+
+	//wallet, _ := master.GetWallet(hdwallet.CoinType(hdwallet.BNB))
+	//fmt.Println("BNB私钥：", wallet.GetKey().PrivateHex())
+	//address, _ := wallet.GetKey().AddressBNB(hdwallet.MAINNET)
+	//fmt.Println("BNB: ", address)
+	//addressTestnet, _ := wallet.GetKey().AddressBNB(hdwallet.TESTNET)
+	//fmt.Println("BNBTestnet: ", addressTestnet)
 
 	//wallet, _ := master.GetWallet(hdwallet.CoinType(hdwallet.TRX))
 	//fmt.Println("TRX私钥：", wallet.GetKey().PrivateHex())

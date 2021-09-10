@@ -4,6 +4,7 @@ import (
 	"crypto/ecdsa"
 	"encoding/hex"
 	"fmt"
+
 	"github.com/binance-chain/go-sdk/common/bech32"
 	"github.com/binance-chain/go-sdk/common/types"
 	"github.com/btcsuite/btcd/btcec"
@@ -11,6 +12,9 @@ import (
 	"github.com/btcsuite/btcutil"
 	"github.com/btcsuite/btcutil/hdkeychain"
 	"github.com/cpacia/bchutil"
+	filaddr "github.com/filecoin-project/go-address"
+	"github.com/myxtype/filecoin-client/local"
+	filtypes "github.com/myxtype/filecoin-client/types"
 	"github.com/tendermint/tendermint/crypto/secp256k1"
 )
 
@@ -233,10 +237,15 @@ func (k *Key) AddressP2WPKHInP2SH() (string, error) {
 }
 
 // AddressBNB 生成bnb地址
-// hrp bnb主网地址 tbnb测试地址
-func (k *Key) AddressBNB(hrp string) (string, error) {
-	if hrp == "" {
+// network mainnet主网地址 testnet测试网地址
+func (k *Key) AddressBNB(network string) (string, error) {
+	hrp := "bnb"
+
+	switch network {
+	case MAINNET:
 		hrp = "bnb"
+	case TESTNET:
+		hrp = "tbnb"
 	}
 
 	priBytes, err := hex.DecodeString(k.PrivateHex())
@@ -259,4 +268,23 @@ func (k *Key) AddressBNB(hrp string) (string, error) {
 	}
 
 	return bech32Addr, nil
+}
+
+func (k *Key) AddressFIL(network string) (string, error) {
+
+	switch network {
+	case MAINNET:
+		filaddr.CurrentNetwork = filaddr.Mainnet
+	case TESTNET:
+		filaddr.CurrentNetwork = filaddr.Testnet
+	default:
+		filaddr.CurrentNetwork = filaddr.Mainnet
+	}
+
+	addr, err := local.WalletPrivateToAddress(local.ActSigType(filtypes.KTSecp256k1), k.Private.Serialize())
+	if err != nil {
+		return "", err
+	}
+
+	return addr.String(), nil
 }

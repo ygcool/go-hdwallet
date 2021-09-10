@@ -29,6 +29,7 @@ const (
 	QTUM       = ZeroQuote + 2301
 	TRX        = ZeroQuote + 195
 	BNB        = ZeroQuote + 714
+	FIL        = ZeroQuote + 461
 
 	// btc token
 	USDT = BTCToken + 1
@@ -38,8 +39,17 @@ const (
 	USDC = ETHToken + 2
 )
 
+// network
+const (
+	MAINNET = "mainnet"
+	TESTNET = "testnet"
+)
+
 var coinTypes = map[uint32]uint32{
 	USDT: BTC,
 	IOST: ETH,
 	USDC: ETH,
+	TRX:  TRX,
+	BNB:  BNB,
+	FIL:  FIL,
 }

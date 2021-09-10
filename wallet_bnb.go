@@ -38,6 +38,5 @@ func (c *bnb) GetKey() *Key {
 }
 
 func (c *bnb) GetAddress() (string, error) {
-	//return "", errors.New("please use wallet.GetKey().AddressBNB(\"tbnb\")")
-	return c.key.AddressBNB("bnb")
+	return c.key.AddressBNB(MAINNET)
 }

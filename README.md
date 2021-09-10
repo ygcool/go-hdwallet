@@ -19,6 +19,7 @@ Golang实现的多币种钱包
 - USDC
 - TRX
 - BNB(Binance Chain)
+- FIL
 
 ## 安装
 
