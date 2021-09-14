@@ -94,6 +94,3 @@ func main() {
     fmt.Println("ETC: ", address)
 }
 ```
-
-
-鸣谢：[https://github.com/foxnut/go-hdwallet](https://github.com/foxnut/go-hdwallet)
