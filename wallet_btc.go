@@ -37,3 +37,7 @@ func (c *btc) GetKey() *Key {
 func (c *btc) GetAddress() (string, error) {
 	return c.key.AddressBTC()
 }
+
+func (c *btc) GetPrivateKey() (string, error) {
+	return c.key.PrivateWIF(true)
+}

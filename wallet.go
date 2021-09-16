@@ -9,4 +9,5 @@ type Wallet interface {
 	GetSymbol() string
 	GetKey() *Key
 	GetAddress() (string, error)
+	GetPrivateKey() (string, error)
 }

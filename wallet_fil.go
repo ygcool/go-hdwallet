@@ -37,3 +37,7 @@ func (c *fil) GetKey() *Key {
 func (c *fil) GetAddress() (string, error) {
 	return c.key.AddressFIL(MAINNET)
 }
+
+func (c *fil) GetPrivateKey() (string, error) {
+	return c.key.PrivateHex(), nil
+}

@@ -40,3 +40,7 @@ func (c *bnb) GetKey() *Key {
 func (c *bnb) GetAddress() (string, error) {
 	return c.key.AddressBNB(MAINNET)
 }
+
+func (c *bnb) GetPrivateKey() (string, error) {
+	return c.key.PrivateHex(), nil
+}

@@ -23,7 +23,8 @@ func main() {
 	fmt.Println()
 
 	wallet, _ := master.GetWallet(hdwallet.CoinType(hdwallet.FIL))
-	fmt.Println("FIL私钥：", wallet.GetKey().PrivateHex())
+	prikey, _ := wallet.GetPrivateKey()
+	fmt.Println("FIL私钥：", prikey)
 	address, _ := wallet.GetAddress()
 	fmt.Println("FIL: ", address)
 	addressTestnet, _ := wallet.GetKey().AddressFIL(hdwallet.TESTNET)

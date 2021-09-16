@@ -46,3 +46,7 @@ func (c *trx) GetAddress() (string, error) {
 
 	return a.String(), nil
 }
+
+func (c *trx) GetPrivateKey() (string, error) {
+	return c.key.PrivateHex(), nil
+}
