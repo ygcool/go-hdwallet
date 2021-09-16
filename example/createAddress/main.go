@@ -43,10 +43,11 @@ func main() {
 	//fmt.Println("TRX: ", address)
 
 	//wallet, _ = master.GetWallet(hdwallet.Purpose(hdwallet.ZeroQuote+44), hdwallet.CoinType(hdwallet.BTC), hdwallet.AddressIndex(0))
-	//address, _ = wallet.GetAddress()  // 1AwEPfoojHnKrhgt1vfuZAhrvPrmz7Rh44
-	//addressP2WPKH, _ := wallet.GetKey().AddressP2WPKH() // bc1qdnavt2xqvmc58ktff7rhvtn9s62zylp5lh5sry
+	//address, _ = wallet.GetAddress()                                // 1AwEPfoojHnKrhgt1vfuZAhrvPrmz7Rh44
+	//addressP2WPKH, _ := wallet.GetKey().AddressP2WPKH()             // bc1qdnavt2xqvmc58ktff7rhvtn9s62zylp5lh5sry
 	//addressP2WPKHInP2SH, _ := wallet.GetKey().AddressP2WPKHInP2SH() // 39vtu9kWfGigXTKMMyc8tds7q36JBCTEHg
-	//btcwif, err := wallet.GetKey().PrivateWIF(true)
+	////btcwif, err := wallet.GetKey().PrivateWIF(true)
+	//btcwif, err := wallet.GetPrivateKey()
 	//if err != nil {
 	//	panic(err)
 	//}
